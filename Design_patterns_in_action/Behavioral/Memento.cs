@@ -1,5 +1,6 @@
 ﻿namespace Design_patterns_in_action.Behavioral
 {
+    // Apply undo mechanism
     public class EditorState
     {
         public EditorState(string content)
