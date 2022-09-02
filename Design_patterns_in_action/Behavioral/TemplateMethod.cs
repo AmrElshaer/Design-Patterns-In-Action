@@ -12,30 +12,30 @@
                 Assemble();
                 Deploy();
             }
-
-            abstract public void Test();
-            abstract public void Lint();
-            abstract public void Assemble();
-            abstract public void Deploy();
+            // all method should be protected so the client can't call it
+            protected abstract void Test();
+            protected abstract void Lint();
+            protected abstract void Assemble();
+            protected abstract void Deploy();
         }
         class AndroidBuilder : Builder
         {
-            public override void Assemble()
+            protected override void Assemble()
             {
                 Console.WriteLine("Assembling the android build");
             }
 
-            public override void Deploy()
+            protected override void Deploy()
             {
                 Console.WriteLine("Deploying android build to server");
             }
 
-            public override void Lint()
+            protected override void Lint()
             {
                 Console.WriteLine("Linting the android code");
             }
 
-            public override void Test()
+            protected override void Test()
             {
                 Console.WriteLine("Running android tests");
             }
@@ -44,22 +44,22 @@
 
         class IosBuilder : Builder
         {
-            public override void Assemble()
+            protected override void Assemble()
             {
                 Console.WriteLine("Assembling the ios build");
             }
 
-            public override void Deploy()
+            protected override void Deploy()
             {
                 Console.WriteLine("Deploying ios build to server");
             }
 
-            public override void Lint()
+            protected override void Lint()
             {
                 Console.WriteLine("Linting the ios code");
             }
 
-            public override void Test()
+            protected override void Test()
             {
                 Console.WriteLine("Running ios tests");
             }
