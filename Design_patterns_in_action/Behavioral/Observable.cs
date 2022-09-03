@@ -1,9 +1,13 @@
 ﻿namespace Design_patterns_in_action.Behavioral
 {
     // when the status  of object is change another object need to notify
+    // push style of communication
+    // pull style of communication
     public interface Observable
     {
-        void Update(DataSource dataSource);
+        // pull style communication coupling
+        // push style void Update(DataSource data)
+        void Update();
     }
 
     public class Subject
@@ -20,11 +24,11 @@
             _Observable.Remove(observable);
         }
 
-        public void Notify(DataSource dataSource)
+        public void Notify()
         {
             foreach (var observable in _Observable)
             {
-                observable.Update(dataSource);
+                observable.Update();
             }
         }
     }
@@ -40,12 +44,12 @@
         public void SetA(int value)
         {
             this.a = value;
-            base.Notify(this);
+            base.Notify();
         }
         public void SetB(int value)
         {
             this.b = value;
-            base.Notify(this);
+            base.Notify();
         }
         public int GetB()
         {
@@ -58,19 +62,31 @@
     public class SpreadSheet : Observable
     {
         private int total;
+        private readonly DataSource data;
+        public SpreadSheet(DataSource data)
+        {
+            this.data = data;
+        }
         public int Get()
         {
             return this.total;
         }
 
-        public void Update(DataSource data)
+        public void Update()
         {
             this.total = data.GetA() + data.GetB();
         }
     }
     public class Chart : Observable
     {
-        public void Update(DataSource data)
+        private readonly DataSource data;
+
+        public Chart(DataSource data)
+        {
+            this.data = data;
+        }
+
+        public void Update()
         {
             Console.WriteLine($"Draw A=> {data.GetA()}");
             Console.WriteLine($"Draw B=> {data.GetB()}");
