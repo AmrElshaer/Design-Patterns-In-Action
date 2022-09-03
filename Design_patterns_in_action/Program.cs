@@ -1,7 +1,5 @@
 ﻿using Design_patterns_in_action.Behavioral;
-//Auth=>log=>compressor
-var compressor = new Compressor(null);
-var logger = new Logger(compressor);
-var authenticator = new Authenticator(logger);
-var server = new WebServer(authenticator);
-server.Handler(new HttpRequest() { UserName = "admin", Password = "admin" });
+var document = new HtmlDocument();
+document.Add(new AnchorNode());
+document.Add(new HeadingNode());
+document.Execute(new HighLightOperation());
