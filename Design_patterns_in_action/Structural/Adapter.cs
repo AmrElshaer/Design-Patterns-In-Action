@@ -1,5 +1,9 @@
 ﻿namespace Design_patterns_in_action.Structural
 {
+    // adapter vs decorator
+    // state vs strategy
+    // observable vs Mediator
+    //
     interface ILion
     {
         void Roar();
@@ -27,6 +31,7 @@
 
         }
     }
+    // when you have source code that you can't modified so you can't change it and you want to consume his code
     class WildDog
     {
         public void bark()
@@ -34,16 +39,12 @@
         }
     }
     // Adapter around wild dog to make it compatible with our game
-    class WildDogAdapter : ILion
+    class WildDogAdapter : WildDog, ILion
     {
-        private WildDog mDog;
-        public WildDogAdapter(WildDog dog)
-        {
-            this.mDog = dog;
-        }
+
         public void Roar()
         {
-            mDog.bark();
+            bark();
         }
     }
 }
