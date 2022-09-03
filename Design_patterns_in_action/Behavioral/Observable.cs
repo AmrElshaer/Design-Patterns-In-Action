@@ -19,12 +19,12 @@
             _Observable.Add(observable);
         }
 
-        public void Remove(Observable observable)
+        protected void Remove(Observable observable)
         {
             _Observable.Remove(observable);
         }
 
-        public void Notify()
+        protected void Notify()
         {
             foreach (var observable in _Observable)
             {
